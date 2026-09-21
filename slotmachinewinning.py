@@ -10,8 +10,7 @@ class SlotMachine:
         self.balance -= stake
         print ('You have', str(stake) + ' dollars in the machine')
         self.stake = stake
-slots1 = SlotMachine('firstSlot', ['a'], 10000)
-
+slots1 = SlotMachine('firstSlot', ['a','b','c','d',], 10000)
 
 def gamblingSequence():
     result = spinning()
@@ -29,11 +28,10 @@ def gamblingSequence():
         restarting()
 def restarting():
     retry = input('try again y or n ')
-    fresh_start = False
-    if retry == 'n' and not fresh_start:
+    if retry == 'n' :
         print('no keep gambling your about to win big')
         restarting()
-    elif retry == 'y' and not fresh_start: 
+    elif retry == 'y': 
         result = ''
         slots1.deposit(slots1.balance, int(input('what do you want to deposit ')))
         if slots1.balance < 0 :
@@ -41,14 +39,14 @@ def restarting():
         else:
             gamblingSequence()
             retry == ''
-    elif retry != 'y' or retry != 'n' and not fresh_start:
+    elif retry != 'y' or retry != 'n':
         retry = input('y or n ')
         restarting()
 def spinning():
     return [ [slots1.spin(),slots1.spin(),slots1.spin()], \
              [slots1.spin(),slots1.spin(),slots1.spin()], \
              [slots1.spin(),slots1.spin(),slots1.spin()] ]
-fresh_start = True
+
 slots1.deposit(slots1.balance, int(input('what do you want to deposit. You have ' + str(slots1.balance) + ' left ')))
 gamblingSequence()
 
